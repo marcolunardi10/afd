@@ -73,7 +73,7 @@ def processar_entrada(caminho_arquivo):
     return fita_saida, tabela_simbolos
 
 
-entrada = '/home/marco/Documents/afd/afd/entrada.txt'
+entrada = r'C:\Users\marco\OneDrive\Documentos\trabalho_compiladores\entrada.txt'
 
 fita, tabela = processar_entrada(entrada)
 
