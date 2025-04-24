@@ -38,7 +38,7 @@ afd = {
 
 estados_finais = ['q6', 'q10', 'q15', 'q21', 'q24', 'q28', 'q32', 'q36', 'q41', 'q43']
 
-def transicao_por_letra(token):
+def transicao(token):
     estado = 'q0'
     caminho = []
     for letra in token:
@@ -59,27 +59,26 @@ def processar_entrada(caminho_arquivo):
     with open(caminho_arquivo, 'r') as arquivo:
         linhas = arquivo.readlines()
 
-    for num_linha, linha in enumerate(linhas, start=1):
+    for numero_linha, linha in enumerate(linhas, start=1):
         tokens = linha.strip().split()
         for token in tokens:
-            caminho, rotulo = transicao_por_letra(token)
+            caminho, rotulo = transicao(token)
             fita_saida.append(caminho[-1] if rotulo != 'ERRO' else 'X')
             tabela_simbolos.append({
-                'linha': num_linha,
+                'linha': numero_linha,
                 'identificador': token,
                 'rotulo': rotulo
             })
 
     return fita_saida, tabela_simbolos
 
-# --- EXECUÇÃO ---
 
 entrada = '/home/marco/Documents/afd/afd/entrada.txt'
 
 fita, tabela = processar_entrada(entrada)
 
 print("Fita de saída:")
-print(' -> '.join(fita))
+print(fita)
 print("\nTabela de Símbolos:\n")
 print(f"{'Linha':<8}{'Token':<20}{'Rótulo':<20}")
 print("-" * 48)
